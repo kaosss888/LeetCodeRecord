@@ -29,8 +29,8 @@ public class LongestConsecutive {
                 int currentNum = num;
                 int tempResult = 1;
 
-                while (set.contains(num + 1)) {
-                    currentNum = num + 1;
+                while (set.contains(currentNum + 1)) {
+                    currentNum = currentNum + 1;
                     tempResult++;
                 }
 
