@@ -3,7 +3,7 @@ package com.sweartooffer;
 public class CoinChange {
 
     public int coinChange(int[] coins, int amount) {
-        int[] table = new int[amount];
+        int[] table = new int[amount + 1];
         return change(coins, amount, table);
     }
 
@@ -15,14 +15,16 @@ public class CoinChange {
         if (table[amount] != 0)
             return table[amount];
 
-        int result = Integer.MIN_VALUE;
+        int result = Integer.MAX_VALUE;
         for (int i = 0; i < coins.length; i++) {
 
-            result = Math.min(change(coins, amount - coins[i], table), result);
-
+            int subResult = change(coins, amount - coins[i], table);
+            if (subResult == -1)
+                continue;
+            result = Math.min(result, subResult + 1);
         }
 
-        table[amount] = result + 1;
+        table[amount] = result == Integer.MAX_VALUE ? -1 : result;
 
         return table[amount];
     }
