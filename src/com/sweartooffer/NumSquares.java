@@ -7,8 +7,6 @@ public class NumSquares {
 
     public Map<Integer, Integer> map = new HashMap<>();
 
-    public int result = Integer.MAX_VALUE;
-
     public int numSquares(int n) {
         if (n == 1)
             return 1;
@@ -23,14 +21,14 @@ public class NumSquares {
         }
 
         int temp;
+        int result = Integer.MAX_VALUE;
         for (int i = num; i >= 1; i--) {
-
             temp = numSquares(n - i * i) + 1;
 
-            map.put(n, temp);
-
             result = Math.min(result, temp);
+
         }
+        map.put(n, result);
 
         return result;
 
@@ -38,6 +36,6 @@ public class NumSquares {
 
     public static void main(String[] args) {
         NumSquares numSquares = new NumSquares();
-        System.out.println(numSquares.numSquares(3));
+        System.out.println(numSquares.numSquares(12));
     }
 }
